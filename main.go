@@ -94,7 +94,7 @@ func (d *discovery) Run(ctx context.Context, ch chan<- []*targetgroup.Group) {
 	for c := time.Tick(time.Duration(d.refreshInterval) * time.Second); ; {
 
 		endpoint := fmt.Sprintf("http://%v/api/v1/query?", d.address)
-		query := fmt.Sprintf("up{role=~'%s', exporter_port=~'.+', metrics_path=~'.+', app=~'.+'}", d.roleLabel)
+		query := fmt.Sprintf("role{role=~'%s', exporter_port=~'.+', metrics_path=~'.+', app=~'.+'}", d.roleLabel)
 
 		q := url.Values{}
 		q.Add("query", query)
